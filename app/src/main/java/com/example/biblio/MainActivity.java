@@ -1,6 +1,5 @@
 package com.example.biblio;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.biblio.db.AppDatabase;
 import com.example.biblio.db.User;
@@ -28,9 +28,18 @@ public class MainActivity extends AppCompatActivity {
 
         Button addNewUserButton = findViewById(R.id.addNewUserButton);
         addNewUserButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               startActivityForResult(new Intent(MainActivity.this, AddNewUserActivity.class), 100);
+           }
+       });
+
+        Button addBookButton = findViewById(R.id.addNewBookButton);
+        addBookButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, AddNewUserActivity.class), 100);
+                Log.i("Plop", "Ajout de livres");
+                //startActivityForResult(new Intent(MainActivity.this, AddNewBookActivity.class), 100);
             }
         });
         initRecyclerView();
